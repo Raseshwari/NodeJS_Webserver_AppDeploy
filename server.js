@@ -1,22 +1,27 @@
 const express = require('express');
+const hbs = require('hbs');
 
 var app = express();
 
+//using handlebars i.e., set handlebars
+app.set('view engine','hbs');
 //middleware
 app.use(express.static(__dirname+'/public'));
 
 //Route handlers
 app.get('/', (req, res) => {
-	// res.send('<h1>Hello Express!!</h1>');
-	res.send({
-		name: 'Rashu',
-		age: 28,
-		city: 'Mumbai'
+	res.render('home.hbs', {
+		pageTitle: 'Home Page',
+		welcomeMessage: 'Welcome User',
+		currentYear: new Date().getFullYear()
 	});
 });
 
 app.get('/about', (req, res) => {
-	res.send('About Page');
+	res.render('about.hbs',{
+		pageTitle: 'About Page',
+		currentYear: new Date().getFullYear()
+	});
 });
 
 app.get('/bad', (req, res) => {
