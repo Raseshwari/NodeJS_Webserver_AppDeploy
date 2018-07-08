@@ -25,6 +25,12 @@ app.use((req, res, next) => {
 	next();
 });
 
+// app.use((req,res,next) => {
+// 	res.render('project.hbs', {
+// 		projectPage: 'Some text about'
+// 	});
+// 	next();
+// });
 //middlewar without next(); 
 // app.use((req, res, next) => {
 // 	res.render('maintenance.hbs');
@@ -56,6 +62,12 @@ app.get('/about', (req, res) => {
 		pageTitle: 'About Page',
 		pageBody: 'About Page Body',
 	});
+});
+
+app.get('/project', (req, res) => {
+	res.render('project.hbs', {
+		projectPage: 'Some text about projects'
+	})
 });
 
 app.get('/bad', (req, res) => {
