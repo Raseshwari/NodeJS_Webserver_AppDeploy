@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//setting heroku and default port
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 //registering Partials
@@ -23,9 +26,9 @@ app.use((req, res, next) => {
 });
 
 //middlewar without next(); 
-app.use((req, res, next) => {
-	res.render('maintenance.hbs');
-})
+// app.use((req, res, next) => {
+// 	res.render('maintenance.hbs');
+// })
 
 //middleware for static content like help
 app.use(express.static(__dirname+'/public'));
@@ -55,15 +58,16 @@ app.get('/about', (req, res) => {
 	});
 });
 
-//bind app to machine
-app.listen(3000, () => {
-	console.log('Server is up on port 3000');
-});
-
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: 'Unable to load page',
 		status:'ENOTFOUND'
 	});
 });
+
+//bind app to machine
+app.listen(port, () => {
+	console.log(`Server is up on port ${port}`);
+});
+
 
