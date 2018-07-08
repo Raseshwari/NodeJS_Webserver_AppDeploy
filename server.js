@@ -55,6 +55,11 @@ app.get('/about', (req, res) => {
 	});
 });
 
+//bind app to machine
+app.listen(3000, () => {
+	console.log('Server is up on port 3000');
+});
+
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: 'Unable to load page',
@@ -62,7 +67,3 @@ app.get('/bad', (req, res) => {
 	});
 });
 
-//bind app to machine
-app.listen(3000, () => {
-	console.log('Server is up on port 3000');
-});
